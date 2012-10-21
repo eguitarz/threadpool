@@ -7,12 +7,15 @@ Threadpool is the "threadpool pattern" implemented in ruby. It's a compact but r
 - MRI and JRuby are supported.
 
 ## Install
-    gem install e-threadpool
-or edit Gemfile
+Edit `Gemfile`
+
     ...
     gem 'e-threadpool'
     ...
 
+or
+
+    gem install e-threadpool
 
 ## Example
     require 'threadpool'
@@ -32,5 +35,5 @@ or edit Gemfile
     # shutdown will wait until all jobs are finished
     threadpool.shutdown
 
-## LICENSE
+## License
 MIT LICENSE, please refer to the LICENSE file.

@@ -1,6 +1,6 @@
 gemspec = Gem::Specification.new do |s|
   s.name = 'e-threadpool'
-  s.version = '1.0.2'
+  s.version = '1.1.0'
   s.date = '2012-10-21'
   s.authors = ['Dale Ma']
   s.email = 'dalema22@gmail.com'

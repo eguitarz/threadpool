@@ -31,6 +31,8 @@ threadpool = Threadpool::Threadpool.new
 100.times.each do
   # threadpool auto-executes the job after loaded
   threadpool.load(TestJob.new)
+  # Sleep 10ms, prevent ouput too fast on console.
+  sleep(0.01)
 end
 
 # shutdown will wait until all jobs are finished

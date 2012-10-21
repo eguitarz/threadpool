@@ -18,22 +18,24 @@ or
     gem install e-threadpool
 
 ## Example
-    require 'threadpool'
+```ruby
+require 'threadpool'
 
-    class TestJob < Job
-      def run
-        puts "hello"
-      end
-    end
+class TestJob < Job
+  def run
+    puts "hello"
+  end
+end
 
-    threadpool = Threadpool::Threadpool.new
-    100.times.each do
-      # threadpool auto-executes the job after loaded
-      threadpool.load(TestJob.new)
-    end
+threadpool = Threadpool::Threadpool.new
+100.times.each do
+  # threadpool auto-executes the job after loaded
+  threadpool.load(TestJob.new)
+end
 
-    # shutdown will wait until all jobs are finished
-    threadpool.shutdown
+# shutdown will wait until all jobs are finished
+threadpool.shutdown
+```
 
 ## License
 MIT LICENSE, please refer to the LICENSE file.

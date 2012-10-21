@@ -1,4 +1,4 @@
-module Threadpool
+module Ethreadpool
   
   class Worker
     attr_reader :start_time
@@ -34,6 +34,6 @@ module Threadpool
       @job = nil
       @start_time = nil
     end
-    
+
   end
 end

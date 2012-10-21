@@ -1,6 +1,6 @@
 require "monitor"
 
-module Threadpool
+module Ethreadpool
 
   class Threadpool
     INIT_WORKERS = 10

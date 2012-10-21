@@ -1,4 +1,4 @@
-module Threadpool
+module Ethreadpool
 
   class Job
     attr_reader :jobid
@@ -15,6 +15,6 @@ module Threadpool
     def cancel
       Thread.current.exit
     end
-    
+
   end
 end

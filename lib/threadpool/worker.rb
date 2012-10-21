@@ -12,7 +12,7 @@ module Ethreadpool
     end
 
     def process
-      return if @start_time
+      return if @start_time || @job.nil?
       @start_time = Time.now
       @thread = Thread.new {
         @job.run 

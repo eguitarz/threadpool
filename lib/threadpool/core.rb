@@ -17,7 +17,7 @@ module Ethreadpool
       end
 
       @workers = (0...@init_workers).map { Threadpool::Worker.new }
-      Thread.new { process }
+      @checker_thread = Thread.new { run_checker }
     end
 
     def load(job)
@@ -30,6 +30,8 @@ module Ethreadpool
       loop do
         worker = idle_worker
         worker.nil? ? create_worker : break
+        
+        # sleep here is a must, or MRI will get stucks
         sleep(0.001)
       end
 
@@ -38,26 +40,19 @@ module Ethreadpool
 
     def shutdown
       @teminate = true
-
-      loop do
-        return if busy_workers.count == 0
-        sleep(0.001)
-      end
+      @checker_thread.join
     end
 
     private
-    def process
+    def run_checker
       loop do
         synchronize do
           @workers.each do |w|
-
-            if w.loaded? 
-              w.process
-
-              if Time.now - w.start_time > @timeout_secs
-                puts "job is timeout."
-                w.cancel
-              end
+            w.process
+            t = w.start_time
+            if t && (Time.now - t > @timeout_secs)
+              puts "job #{w.jobid} is timeout."
+              w.cancel
             end
 
           end

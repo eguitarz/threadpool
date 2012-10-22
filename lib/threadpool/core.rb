@@ -43,6 +43,10 @@ module Ethreadpool
       @checker_thread.join
     end
 
+    def busy_workers_count
+      busy_workers.count
+    end
+
     private
     def run_checker
       loop do
@@ -59,7 +63,7 @@ module Ethreadpool
         end
         sleep(0.001)
 
-        if @teminate && busy_workers.count == 0
+        if @teminate && busy_workers_count == 0
           return
         end
       end

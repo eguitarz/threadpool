@@ -31,7 +31,7 @@ module Ethreadpool
         worker = idle_worker
         worker.nil? ? create_worker : break
         
-        # sleep here is a must, or MRI will get stucks
+        # sleep here is a must, or MRI will get stuck
         sleep(0.001)
       end
 
@@ -43,8 +43,8 @@ module Ethreadpool
       @checker_thread.join
     end
 
-    def busy_workers_count
-      busy_workers.count
+    def idle?
+      busy_workers.empty?
     end
 
     private
@@ -63,7 +63,7 @@ module Ethreadpool
         end
         sleep(0.001)
 
-        if @teminate && busy_workers_count == 0
+        if @teminate && idle? == 0
           return
         end
       end
